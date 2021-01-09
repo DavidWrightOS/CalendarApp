@@ -56,15 +56,47 @@
 		63FDCD3525A9A26E00EC63D9 /* CalendarApp */ = {
 			isa = PBXGroup;
 			children = (
-				63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */,
-				63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */,
+				63FDCD4F25A9A2C700EC63D9 /* Models */,
+				63FDCD4E25A9A2BD00EC63D9 /* Views */,
+				63FDCD4D25A9A2A600EC63D9 /* View Controllers */,
 				63FDCD3A25A9A26E00EC63D9 /* ViewController.swift */,
 				63FDCD3C25A9A26E00EC63D9 /* Main.storyboard */,
+				63FDCD4B25A9A28800EC63D9 /* Resources */,
+			);
+			path = CalendarApp;
+			sourceTree = "<group>";
+		};
+		63FDCD4B25A9A28800EC63D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */,
+				63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */,
 				63FDCD3F25A9A26F00EC63D9 /* Assets.xcassets */,
 				63FDCD4125A9A26F00EC63D9 /* LaunchScreen.storyboard */,
 				63FDCD4425A9A26F00EC63D9 /* Info.plist */,
 			);
-			path = CalendarApp;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		63FDCD4D25A9A2A600EC63D9 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		63FDCD4E25A9A2BD00EC63D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		63FDCD4F25A9A2C700EC63D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
