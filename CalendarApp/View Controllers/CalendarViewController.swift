@@ -122,6 +122,7 @@ class CalendarViewController: UIViewController {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
+            button.imageView?.contentMode = .scaleAspectFit
             button.titleLabel?.font = .systemFont(ofSize: 19, weight: .medium)
             button.setTitle(String(buttonDayOfWeek), for: .normal)
             button.tag = i
@@ -219,15 +220,13 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func dayOfWeekTapped(sender: UIButton) {
-        print("DEBUG: debug dayOfWeek(\(sender.tag) tapped..")
-        guard let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }),
-              selectedButton.tag != sender.tag else { return }
         
-        UIView.animate(withDuration: 1) {
+        if let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }), selectedButton.tag != sender.tag {
             selectedButton.isSelected = false
-            sender.isSelected = true
         }
         
+        sender.isSelected = true
+            
         let date = Date()
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.day, .weekday], from: date)
