@@ -11,7 +11,6 @@ class CalendarViewController: UIViewController {
     
     private let toolbar: UIToolbar = {
         let tb = UIToolbar()
-        tb.tintColor = .systemRed
         
         let barButtonItems: [UIBarButtonItem] = [
             UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(todayButtonTapped)),
@@ -43,12 +42,9 @@ class CalendarViewController: UIViewController {
             button.setTitle(" " + currentMonth, for: .normal)
             
             let config = UIImage.SymbolConfiguration(textStyle: UIFont.TextStyle.headline, scale: .large)
-            let backImage = UIImage(systemName: "chevron.backward")?
-                .withConfiguration(config)
-                .withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+            let backImage = UIImage(systemName: "chevron.backward")?.withConfiguration(config)
             button.setImage(backImage, for: .normal)
             
-            button.tintColor = .systemRed
             button.setTitleColor(button.tintColor, for: .normal)
             button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
             
@@ -58,7 +54,6 @@ class CalendarViewController: UIViewController {
         navItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navItem.rightBarButtonItems = [addButton, searchButton, viewStyleButton]
         navBar.setItems([navItem], animated: false)
-        navBar.tintColor = .systemRed
         navBar.barTintColor = .barBackgroundColor
         navBar.isTranslucent = false
         
