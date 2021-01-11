@@ -31,8 +31,6 @@ class CalendarViewController: UIViewController {
         
         let backButton: UIButton = {
             let button = UIButton(type: .system)
-            let monthFormatter = DateFormatter()
-            monthFormatter.dateFormat = "MMMM"
             let currentMonth = monthFormatter.string(from: Date())
             
             button.setTitle(" " + currentMonth, for: .normal)
@@ -56,6 +54,121 @@ class CalendarViewController: UIViewController {
         return navBar
     }()
     
+    private lazy var headerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .barBackgroundColor
+        
+        let headerBottomBorder = UIView()
+        headerBottomBorder.backgroundColor = .separator
+        headerBottomBorder.setDimensions(height: 0.2)
+        view.addSubview(headerBottomBorder)
+        headerBottomBorder.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        
+        view.addSubview(dayOfWeekStackView)
+        dayOfWeekStackView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 1, paddingLeft: 8, paddingRight: 8)
+        
+        view.addSubview(dateTitleLabel)
+        dateTitleLabel.anchor(top: dayOfWeekStackView.bottomAnchor, left: view.leftAnchor, bottom: headerBottomBorder.topAnchor, right: view.rightAnchor, paddingBottom: 12)
+        
+        return view
+    }()
+    
+    lazy private var dateTitleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .preferredFont(forTextStyle: .body)
+        label.text = dateTitleFormatter.string(from: Date())
+        return label
+    }()
+    
+    lazy private var dayOfWeekStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.distribution = .fillEqually
+        stack.spacing = 8
+        
+        let dayOfWeekLetters = ["S", "M", "T", "W", "T", "F", "S"]
+        let buttonSpacingWidth = stack.spacing * CGFloat(dayOfWeekLetters.count + 1)
+        let buttonWidth = (UIScreen.main.bounds.width - buttonSpacingWidth) / CGFloat(dayOfWeekLetters.count)
+        
+        for i in dayOfWeekLetters.indices {
+            let label = UILabel()
+            label.textAlignment = .center
+            label.font = .preferredFont(forTextStyle: .caption2)
+            label.textColor = dayOfWeekLetters[i] == "S" ? .secondaryLabel : .label
+            label.text = dayOfWeekLetters[i]
+            
+            let button = dayOfWeekButtons[i]
+            let dayStackView = UIStackView(arrangedSubviews: [label, button])
+            dayStackView.axis = .vertical
+            stack.addArrangedSubview(dayStackView)
+        }
+        
+        return stack
+    }()
+    
+    private let dayOfWeekButtons: [UIButton] = {
+        var buttons = [UIButton]()
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day, .weekday], from: date)
+        let dayOfWeek = dateComponents.day!
+        let weekDay = dateComponents.weekday!
+        
+        for i in 1...7 {
+            let daysFromToday = i - weekDay
+            let buttonDayOfWeek = dayOfWeek.advanced(by: daysFromToday)
+            
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
+            button.titleLabel?.font = .systemFont(ofSize: 19, weight: .medium)
+            button.setTitle(String(buttonDayOfWeek), for: .normal)
+            button.tag = i
+            button.addTarget(self, action: #selector(dayOfWeekTapped), for: .touchUpInside)
+            button.setBackgroundImage(nil, for: .normal)
+            
+            if i == weekDay {
+                button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
+                button.setTitleColor(.systemRed, for: .normal)
+                button.setTitleColor(.label, for: .selected)
+                button.isSelected = true
+            } else {
+                button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .selected)
+                button.setTitleColor(.barBackgroundColor, for: .selected)
+                if i == 1 || i == 7 {
+                    button.setTitleColor(.secondaryLabel, for: .normal)
+                } else {
+                    button.setTitleColor(.label, for: .normal)
+                }
+            }
+            
+            buttons.append(button)
+        }
+        
+        return buttons
+    }()
+    
+    private var currentDate: Date { Date() }
+    
+    private let monthFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM"
+        return formatter
+    }()
+    
+    private let dayNumberFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        return formatter
+    }()
+    
+    private let dateTitleFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE  MMMM d, yyyy"
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
@@ -70,6 +183,9 @@ class CalendarViewController: UIViewController {
         
         view.addSubview(toolbar)
         toolbar.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor)
+        
+        view.addSubview(headerView)
+        headerView.anchor(top: navigationBar.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: -1)
     }
     
     // MARK: - Selectors
@@ -100,6 +216,25 @@ class CalendarViewController: UIViewController {
     
     @objc private func addButtonTapped() {
         print("DEBUG: debug addButtonTapped..")
+    }
+    
+    @objc private func dayOfWeekTapped(sender: UIButton) {
+        print("DEBUG: debug dayOfWeek(\(sender.tag) tapped..")
+        guard let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }),
+              selectedButton.tag != sender.tag else { return }
+        
+        UIView.animate(withDuration: 1) {
+            selectedButton.isSelected = false
+            sender.isSelected = true
+        }
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day, .weekday], from: date)
+        let weekDay = dateComponents.weekday!
+        let dayOffest = sender.tag - weekDay
+        let selectedDate = calendar.date(byAdding: .day, value: dayOffest, to: date)!
+        dateTitleLabel.text = dateTitleFormatter.string(from: selectedDate)
     }
 }
 
