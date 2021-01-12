@@ -54,6 +54,45 @@ class CalendarViewController: UIViewController {
         return navBar
     }()
     
+    private lazy var searchNavigationBar: UINavigationBar = {
+        let navBar = UINavigationBar()
+        let navItem = UINavigationItem()
+        navItem.titleView = searchBar
+        navBar.setItems([navItem], animated: false)
+        navBar.delegate = self
+        return navBar
+    }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        searchBar.tintColor = .systemRed
+        searchBar.showsCancelButton = true
+        searchBar.searchBarStyle = .minimal
+        searchBar.delegate = self
+        return searchBar
+    }()
+    
+    private lazy var searchNavigationBarTopAnchor: NSLayoutConstraint = {
+        NSLayoutConstraint(item: searchNavigationBar,
+                           attribute: .top,
+                           relatedBy: .equal,
+                           toItem: view.safeAreaLayoutGuide,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 0)
+    }()
+    
+    private lazy var searchNavigationBarBottomAnchor: NSLayoutConstraint = {
+        NSLayoutConstraint(item: searchNavigationBar,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: view,
+                           attribute: .top,
+                           multiplier: 1,
+                           constant: 0)
+    }()
+    
     private lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .barBackgroundColor
@@ -187,6 +226,11 @@ class CalendarViewController: UIViewController {
         
         view.addSubview(headerView)
         headerView.anchor(top: navigationBar.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: -1)
+        
+        view.addSubview(searchNavigationBar)
+        searchNavigationBar.anchor(left: view.leftAnchor, right: view.rightAnchor)
+        searchNavigationBarTopAnchor.isActive = false
+        searchNavigationBarBottomAnchor.isActive = true
     }
     
     // MARK: - Selectors
@@ -212,7 +256,7 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func searchButtonTapped() {
-        print("DEBUG: debug searchButtonTapped..")
+        showSearchBar()
     }
     
     @objc private func addButtonTapped() {
@@ -220,7 +264,6 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func dayOfWeekTapped(sender: UIButton) {
-        
         if let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }), selectedButton.tag != sender.tag {
             selectedButton.isSelected = false
         }
@@ -243,5 +286,38 @@ class CalendarViewController: UIViewController {
 extension CalendarViewController: UINavigationBarDelegate, UIBarPositioningDelegate {
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
+    }
+}
+
+
+// MARK: - UISearch Bar Delegate
+
+extension CalendarViewController: UISearchBarDelegate {
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        hideSearchBar()
+    }
+    
+    func showSearchBar() {
+        searchBar.isHidden = false
+        searchBar.becomeFirstResponder()
+        searchNavigationBarTopAnchor.isActive = true
+        searchNavigationBarBottomAnchor.isActive = false
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in }
+    }
+    
+    func hideSearchBar() {
+        searchBar.resignFirstResponder()
+        searchNavigationBarTopAnchor.isActive = false
+        searchNavigationBarBottomAnchor.isActive = true
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.view.layoutIfNeeded()
+        } completion: { finished in
+            self.searchBar.isHidden = true
+        }
     }
 }
