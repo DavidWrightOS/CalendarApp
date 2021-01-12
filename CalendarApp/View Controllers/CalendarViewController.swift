@@ -54,6 +54,13 @@ class CalendarViewController: UIViewController {
         return navBar
     }()
     
+    private lazy var searchTintView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0
+        return view
+    }()
+    
     private lazy var searchNavigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
         let navItem = UINavigationItem()
@@ -227,6 +234,10 @@ class CalendarViewController: UIViewController {
         view.addSubview(headerView)
         headerView.anchor(top: navigationBar.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: -1)
         
+        view.addSubview(searchTintView)
+        searchTintView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+        searchTintView.isHidden = true
+        
         view.addSubview(searchNavigationBar)
         searchNavigationBar.anchor(left: view.leftAnchor, right: view.rightAnchor)
         searchNavigationBarTopAnchor.isActive = false
@@ -299,12 +310,14 @@ extension CalendarViewController: UISearchBarDelegate {
     }
     
     func showSearchBar() {
-        searchBar.isHidden = false
+        searchTintView.isHidden = false
+        searchNavigationBar.isHidden = false
         searchBar.becomeFirstResponder()
         searchNavigationBarTopAnchor.isActive = true
         searchNavigationBarBottomAnchor.isActive = false
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.searchTintView.alpha = 0.15
             self.view.layoutIfNeeded()
         } completion: { _ in }
     }
@@ -315,9 +328,11 @@ extension CalendarViewController: UISearchBarDelegate {
         searchNavigationBarBottomAnchor.isActive = true
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) {
+            self.searchTintView.alpha = 0
             self.view.layoutIfNeeded()
-        } completion: { finished in
-            self.searchBar.isHidden = true
+        } completion: { _ in
+            self.searchNavigationBar.isHidden = true
+            self.searchTintView.isHidden = true
         }
     }
 }
