@@ -15,6 +15,7 @@
 		63FDCD5825A9A5DD00EC63D9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD5725A9A5DD00EC63D9 /* UIView+Extension.swift */; };
 		63FDCD5C25AAE4FA00EC63D9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD5B25AAE4FA00EC63D9 /* UIColor+Extension.swift */; };
 		63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD5F25AC52FF00EC63D9 /* UIImage+Extension.swift */; };
+		63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6225AE99A100EC63D9 /* EditEventViewController.swift */; };
 		63FDCD6925AE9E5A00EC63D9 /* CLPlacemark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6825AE9E5A00EC63D9 /* CLPlacemark+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		63FDCD5725A9A5DD00EC63D9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		63FDCD5B25AAE4FA00EC63D9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		63FDCD5F25AC52FF00EC63D9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		63FDCD6225AE99A100EC63D9 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		63FDCD6825AE9E5A00EC63D9 /* CLPlacemark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				63FDCD5125A9A39100EC63D9 /* CalendarViewController.swift */,
+				63FDCD6225AE99A100EC63D9 /* EditEventViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				63FDCD6925AE9E5A00EC63D9 /* CLPlacemark+Extension.swift in Sources */,
 				63FDCD5225A9A39100EC63D9 /* CalendarViewController.swift in Sources */,
 				63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */,
+				63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */,
 				63FDCD5825A9A5DD00EC63D9 /* UIView+Extension.swift in Sources */,
 				63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */,
 				63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */,
