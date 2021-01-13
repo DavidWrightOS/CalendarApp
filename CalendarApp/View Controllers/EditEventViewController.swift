@@ -44,3 +44,14 @@ extension EditEventViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
+// MARK: - Date Formatter
+
+extension EditEventViewController {
+    static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+}
