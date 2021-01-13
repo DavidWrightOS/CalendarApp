@@ -17,6 +17,8 @@
 		63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD5F25AC52FF00EC63D9 /* UIImage+Extension.swift */; };
 		63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6225AE99A100EC63D9 /* EditEventViewController.swift */; };
 		63FDCD6925AE9E5A00EC63D9 /* CLPlacemark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6825AE9E5A00EC63D9 /* CLPlacemark+Extension.swift */; };
+		63FDCD6C25AEA99000EC63D9 /* EditEvent+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6B25AEA99000EC63D9 /* EditEvent+Item.swift */; };
+		63FDCD7025AEA9CD00EC63D9 /* EditEvent+ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD6F25AEA9CD00EC63D9 /* EditEvent+ItemType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		63FDCD5F25AC52FF00EC63D9 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		63FDCD6225AE99A100EC63D9 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		63FDCD6825AE9E5A00EC63D9 /* CLPlacemark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlacemark+Extension.swift"; sourceTree = "<group>"; };
+		63FDCD6B25AEA99000EC63D9 /* EditEvent+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+Item.swift"; sourceTree = "<group>"; };
+		63FDCD6F25AEA9CD00EC63D9 /* EditEvent+ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditEvent+ItemType.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 		63FDCD4F25A9A2C700EC63D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				63FDCD6B25AEA99000EC63D9 /* EditEvent+Item.swift */,
+				63FDCD6F25AEA9CD00EC63D9 /* EditEvent+ItemType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,12 +194,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FDCD6C25AEA99000EC63D9 /* EditEvent+Item.swift in Sources */,
 				63FDCD6925AE9E5A00EC63D9 /* CLPlacemark+Extension.swift in Sources */,
 				63FDCD5225A9A39100EC63D9 /* CalendarViewController.swift in Sources */,
 				63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */,
 				63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */,
 				63FDCD5825A9A5DD00EC63D9 /* UIView+Extension.swift in Sources */,
 				63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */,
+				63FDCD7025AEA9CD00EC63D9 /* EditEvent+ItemType.swift in Sources */,
 				63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */,
 				63FDCD5C25AAE4FA00EC63D9 /* UIColor+Extension.swift in Sources */,
 			);
