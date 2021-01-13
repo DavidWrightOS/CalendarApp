@@ -55,6 +55,14 @@ extension EditEventViewController {
             self.init(type: .date, text: text, detailText: detailText, placeholder: placeholder)
         }
         
+        init(alertType: AlertType, text: String = "Alert", placeholder: String = "None") {
+            self.init(type: .alert, text: text, detailText: alertType.displayName, placeholder: placeholder)
+        }
+        
+        init(repeatType: AlertType, text: String = "Alert", placeholder: String = "None") {
+            self.init(type: .alert, text: text, detailText: repeatType.displayName, placeholder: placeholder)
+        }
+        
         // MARK: Helpers
         
         func hash(into hasher: inout Hasher) {
