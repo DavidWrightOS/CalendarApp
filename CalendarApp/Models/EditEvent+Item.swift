@@ -45,6 +45,16 @@ extension EditEventViewController {
             self.identifier = UUID()
         }
         
+        init(placemark: CLPlacemark, placeholder: String = "Location") {
+            let text = placemark.name ?? placemark.thoroughfare
+            self.init(type: .location, text: text, detailText: placemark.address, placeholder: placeholder)
+        }
+        
+        init(date: Date, text: String, placeholder: String = "None") {
+            let detailText = EditEventViewController.dateFormatter.string(from: date)
+            self.init(type: .date, text: text, detailText: detailText, placeholder: placeholder)
+        }
+        
         // MARK: Helpers
         
         func hash(into hasher: inout Hasher) {
