@@ -11,7 +11,11 @@ class EditEventViewController: UIViewController {
     
     // MARK: - Properties
     
-    let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private var dataSource: UITableViewDiffableDataSource<Int, Item>! = nil
+    private var currentSnapshot: NSDiffableDataSourceSnapshot<Int, Item>! = nil
+    
+    private var isAllDayEvent = false
     
     // TableView items by section
     
@@ -45,8 +49,39 @@ class EditEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "New Event"
         configureTableView()
+        configureDataSource()
+        updateUI(animated: false)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: EditEventViewController.Item.reuseIdentifier)
+    }
+    
+    // MARK: - Helpers
+    
+    @objc private func didToggleAllDaySwitch(_ allDaySwitch: UISwitch) {
+        isAllDayEvent = allDaySwitch.isOn
+        updateUI()
+    }
+}
+
+
+// MARK: - Update UI
+
+extension EditEventViewController {
+    
+    func updateUI(animated: Bool = true) {
+        currentSnapshot = NSDiffableDataSourceSnapshot<Int, Item>()
+        
+        let sections = Array(0..<itemsBySection.count)
+        currentSnapshot.appendSections(sections)
+        
+        for section in sections {
+            let items = itemsBySection[section].filter { !($0.type == .travelTime && isAllDayEvent) }
+            currentSnapshot.appendItems(items, toSection: section)
+        }
+        
+        self.dataSource.apply(currentSnapshot, animatingDifferences: animated)
     }
 }
 
@@ -54,13 +89,94 @@ class EditEventViewController: UIViewController {
 // MARK: - Configure Table View
 
 extension EditEventViewController {
+    
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
-        tableView.anchor(top: view.topAnchor,
-                         left: view.leftAnchor,
-                         bottom: view.bottomAnchor,
-                         right: view.rightAnchor)
+        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+}
+
+
+// MARK: - Configure Data Source
+
+extension EditEventViewController {
+    
+    func configureDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) {
+            [weak self] (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
+            
+            guard let self = self else { return nil }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: EditEventViewController.Item.reuseIdentifier, for: indexPath)
+            var content: UIListContentConfiguration
+            
+            switch item.type {
+            
+            case .textField:
+                content = cell.defaultContentConfiguration()
+                content.text = item.text ?? item.placeholder
+                content.textProperties.color = item.text == nil ? .placeholderText : .label
+                content.secondaryText = nil
+                cell.accessoryType = .none
+                cell.accessoryView = nil
+                
+            case .location:
+                content = UIListContentConfiguration.subtitleCell()
+                content.text = item.text ?? item.placeholder
+                content.textProperties.color = item.text == nil ? .placeholderText : .label
+                content.secondaryText = item.detailText
+                content.secondaryTextProperties.color = .label
+                
+            case .repeats, .travelTime, .alert:
+                content = UIListContentConfiguration.valueCell()
+                content.text = item.text
+                content.textProperties.color = .label
+                content.secondaryText = item.detailText ?? item.placeholder
+                content.secondaryTextProperties.color = .secondaryLabel
+                cell.accessoryType = .disclosureIndicator
+                cell.accessoryView = nil
+                
+            case .allDaySwitch:
+                content = cell.defaultContentConfiguration()
+                content.text = item.text
+                let allDaySwitch = UISwitch()
+                allDaySwitch.isOn = self.isAllDayEvent
+                allDaySwitch.isOn = false
+                allDaySwitch.addTarget(self, action: #selector(self.didToggleAllDaySwitch(_:)), for: .touchUpInside)
+                cell.accessoryView = allDaySwitch
+                
+            case .date:
+                content = UIListContentConfiguration.valueCell()
+                content.text = item.text
+                content.textProperties.color = .label
+                content.secondaryText = item.detailText ?? item.placeholder
+                content.secondaryTextProperties.color = .secondaryLabel
+                cell.accessoryType = .disclosureIndicator
+                cell.accessoryView = nil
+                
+            case .attachment:
+                content = UIListContentConfiguration.valueCell()
+                content.text = item.text
+                content.textProperties.color = .label
+                content.secondaryText = nil
+                cell.accessoryType = .none
+                cell.accessoryView = nil
+                
+            case .textView:
+                content = cell.defaultContentConfiguration()
+                content.text = item.text ?? item.placeholder
+                content.textProperties.color = item.text == nil ? .placeholderText : .label
+                content.secondaryText = nil
+                cell.accessoryType = .none
+                cell.accessoryView = nil
+            }
+            
+            cell.contentConfiguration = content
+            return cell
+        }
+        
+        self.dataSource.defaultRowAnimation = .fade
     }
 }
 
@@ -68,6 +184,7 @@ extension EditEventViewController {
 // MARK: - Table View Delegate
 
 extension EditEventViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -77,6 +194,7 @@ extension EditEventViewController: UITableViewDelegate {
 // MARK: - Date Formatter
 
 extension EditEventViewController {
+    
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

@@ -26,6 +26,8 @@ extension EditEventViewController {
     
     struct Item: Hashable {
         
+        static let reuseIdentifier = "edit-event-item-reuse-identifier"
+        
         // MARK: Properties
         
         let type: ItemType
