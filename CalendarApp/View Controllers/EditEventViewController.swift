@@ -50,18 +50,26 @@ class EditEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "New Event"
+        configureNavigationBar()
         configureTableView()
         configureDataSource()
         updateUI(animated: false)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: EditEventViewController.Item.reuseIdentifier)
     }
     
-    // MARK: - Helpers
+    // MARK: - Selectors
     
     @objc private func didToggleAllDaySwitch(_ allDaySwitch: UISwitch) {
         isAllDayEvent = allDaySwitch.isOn
         updateUI()
+    }
+    
+    @objc private func cancelButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func doneButtonTapped() {
+        print("DEBUG: doneButtonTapped..")
     }
 }
 
@@ -82,6 +90,23 @@ extension EditEventViewController {
         }
         
         self.dataSource.apply(currentSnapshot, animatingDifferences: animated)
+    }
+}
+
+
+// MARK: - Configure Navigation Bar
+
+extension EditEventViewController {
+    
+    private func configureNavigationBar() {
+        navigationItem.title = "New Event"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                                           target: self,
+                                                           action: #selector(cancelButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                                           target: self,
+                                                           action: #selector(doneButtonTapped))
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
 }
 

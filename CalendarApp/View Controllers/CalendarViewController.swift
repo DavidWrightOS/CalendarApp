@@ -271,7 +271,9 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func addButtonTapped() {
-        print("DEBUG: debug addButtonTapped..")
+        let editEventVC = EditEventViewController()
+        let navController = UINavigationController(rootViewController: editEventVC)
+        present(navController, animated: true, completion: nil)
     }
     
     @objc private func dayOfWeekTapped(sender: UIButton) {
