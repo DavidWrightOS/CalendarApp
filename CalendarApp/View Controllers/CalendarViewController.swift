@@ -139,7 +139,7 @@ class CalendarViewController: UIViewController {
         for i in dayOfWeekLetters.indices {
             let label = UILabel()
             label.textAlignment = .center
-            label.font = .preferredFont(forTextStyle: .caption2)
+            label.font = .systemFont(ofSize: 10, weight: .bold)
             label.textColor = dayOfWeekLetters[i] == "S" ? .secondaryLabel : .label
             label.text = dayOfWeekLetters[i]
             
@@ -178,7 +178,7 @@ class CalendarViewController: UIViewController {
             if i == weekDay {
                 button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
                 button.setTitleColor(.systemRed, for: .normal)
-                button.setTitleColor(.label, for: .selected)
+                button.setTitleColor(.white, for: .selected)
                 button.isSelected = true
             } else {
                 button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .selected)
@@ -189,6 +189,11 @@ class CalendarViewController: UIViewController {
                     button.setTitleColor(.label, for: .normal)
                 }
             }
+            
+            // The human brain tends to see perfect squares and circles as slightly taller than they are wide
+            // Set the aspect ratio to 1.03 to make the circle appear equal width/height
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.widthAnchor.constraint(equalTo: button.heightAnchor, multiplier: 1.03).isActive = true
             
             buttons.append(button)
         }
