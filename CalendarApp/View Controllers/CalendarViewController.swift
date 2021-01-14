@@ -111,7 +111,7 @@ class CalendarViewController: UIViewController {
         headerBottomBorder.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor)
         
         view.addSubview(dayOfWeekStackView)
-        dayOfWeekStackView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 1, paddingLeft: 8, paddingRight: 8)
+        dayOfWeekStackView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 5, paddingLeft: 12, paddingRight: 12)
         
         view.addSubview(dateTitleLabel)
         dateTitleLabel.anchor(top: dayOfWeekStackView.bottomAnchor, left: view.leftAnchor, bottom: headerBottomBorder.topAnchor, right: view.rightAnchor, paddingBottom: 12)
@@ -130,7 +130,7 @@ class CalendarViewController: UIViewController {
     lazy private var dayOfWeekStackView: UIStackView = {
         let stack = UIStackView()
         stack.distribution = .fillEqually
-        stack.spacing = 8
+        stack.spacing = 12
         
         let dayOfWeekLetters = ["S", "M", "T", "W", "T", "F", "S"]
         let buttonSpacingWidth = stack.spacing * CGFloat(dayOfWeekLetters.count + 1)
@@ -146,6 +146,7 @@ class CalendarViewController: UIViewController {
             let button = dayOfWeekButtons[i]
             let dayStackView = UIStackView(arrangedSubviews: [label, button])
             dayStackView.axis = .vertical
+            dayStackView.spacing = 4
             stack.addArrangedSubview(dayStackView)
         }
         
@@ -166,14 +167,12 @@ class CalendarViewController: UIViewController {
             let buttonDayOfWeek = dayOfWeek.advanced(by: daysFromToday)
             
             let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
             button.imageView?.contentMode = .scaleAspectFit
             button.titleLabel?.font = .systemFont(ofSize: 19, weight: .regular)
             button.setTitle(String(buttonDayOfWeek), for: .normal)
             button.tag = i
             button.addTarget(self, action: #selector(dayOfWeekTapped), for: .touchUpInside)
-            button.setBackgroundImage(nil, for: .normal)
+            button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.clear, renderingMode: .alwaysOriginal), for: .selected)
             
             if i == weekDay {
                 button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
@@ -182,7 +181,7 @@ class CalendarViewController: UIViewController {
                 button.isSelected = true
             } else {
                 button.setBackgroundImage(UIImage(systemName: "circle.fill")?.withTintColor(.label, renderingMode: .alwaysOriginal), for: .selected)
-                button.setTitleColor(.barBackgroundColor, for: .selected)
+                button.setTitleColor(.systemBackground, for: .selected)
                 if i == 1 || i == 7 {
                     button.setTitleColor(.secondaryLabel, for: .normal)
                 } else {
