@@ -169,7 +169,7 @@ class CalendarViewController: UIViewController {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
             button.imageView?.contentMode = .scaleAspectFit
-            button.titleLabel?.font = .systemFont(ofSize: 19, weight: .medium)
+            button.titleLabel?.font = .systemFont(ofSize: 19, weight: .regular)
             button.setTitle(String(buttonDayOfWeek), for: .normal)
             button.tag = i
             button.addTarget(self, action: #selector(dayOfWeekTapped), for: .touchUpInside)
@@ -279,9 +279,11 @@ class CalendarViewController: UIViewController {
     @objc private func dayOfWeekTapped(sender: UIButton) {
         if let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }), selectedButton.tag != sender.tag {
             selectedButton.isSelected = false
+            selectedButton.titleLabel?.font = .systemFont(ofSize: 19, weight: .regular)
         }
         
         sender.isSelected = true
+        sender.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
             
         let date = Date()
         let calendar = Calendar.current
