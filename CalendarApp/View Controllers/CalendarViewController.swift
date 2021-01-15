@@ -119,8 +119,8 @@ class CalendarViewController: UIViewController {
         return view
     }()
     
-    lazy private var dateTitleLabel: UILabel = {
-        let label = UILabel()
+    lazy private var dateTitleLabel: AnimatedLabel = {
+        let label = AnimatedLabel()
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .body)
         label.text = dateTitleFormatter.string(from: Date())
@@ -294,8 +294,10 @@ class CalendarViewController: UIViewController {
         let dateComponents = calendar.dateComponents([.day, .weekday], from: date)
         let weekDay = dateComponents.weekday!
         let dayOffest = sender.tag - weekDay
-        let selectedDate = calendar.date(byAdding: .day, value: dayOffest, to: date)!
-        dateTitleLabel.text = dateTitleFormatter.string(from: selectedDate)
+        let nextSelectedDate = calendar.date(byAdding: .day, value: dayOffest, to: date)!
+        
+        let nextDateTitleText = dateTitleFormatter.string(from: nextSelectedDate)
+        dateTitleLabel.animateText(to: nextDateTitleText)
     }
 }
 
