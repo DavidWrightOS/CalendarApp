@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */; };
 		63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */; };
 		63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */; };
 		63FDCD4025A9A26F00EC63D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FDCD3F25A9A26F00EC63D9 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabel.swift; sourceTree = "<group>"; };
 		63FDCD3325A9A26E00EC63D9 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		63FDCD4E25A9A2BD00EC63D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */,
 				63FDCD5825A9A5DD00EC63D9 /* UIView+Extension.swift in Sources */,
 				63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */,
+				63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */,
 				63FDCD7025AEA9CD00EC63D9 /* EditEvent+ItemType.swift in Sources */,
 				63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */,
 				63FDCD5C25AAE4FA00EC63D9 /* UIColor+Extension.swift in Sources */,
