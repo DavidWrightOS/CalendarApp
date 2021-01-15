@@ -123,7 +123,7 @@ class CalendarViewController: UIViewController {
         let label = AnimatedLabel()
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .body)
-        label.text = dateTitleFormatter.string(from: Date())
+        label.text = dateTitleFormatter.string(from: selectedDate)
         return label
     }()
     
@@ -200,7 +200,7 @@ class CalendarViewController: UIViewController {
         return buttons
     }()
     
-    private var currentDate: Date { Date() }
+    private var selectedDate: Date = Date()
     
     private let monthFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -281,14 +281,15 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func dayOfWeekTapped(sender: UIButton) {
-        if let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }), selectedButton.tag != sender.tag {
+        if let selectedButton = dayOfWeekButtons.first(where: { $0.isSelected == true }) {
+            guard selectedButton.tag != sender.tag else { return }
             selectedButton.isSelected = false
             selectedButton.titleLabel?.font = .systemFont(ofSize: 19, weight: .regular)
         }
         
         sender.isSelected = true
         sender.titleLabel?.font = .systemFont(ofSize: 19, weight: .semibold)
-            
+        
         let date = Date()
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.day, .weekday], from: date)
@@ -297,7 +298,11 @@ class CalendarViewController: UIViewController {
         let nextSelectedDate = calendar.date(byAdding: .day, value: dayOffest, to: date)!
         
         let nextDateTitleText = dateTitleFormatter.string(from: nextSelectedDate)
+        let animationStyle: AnimatedLabel.AnimationStyle = nextSelectedDate > selectedDate ? .fromRight : .fromLeft
         dateTitleLabel.animateText(to: nextDateTitleText)
+                                   //, animationStyle: animationStyle)
+        
+        selectedDate = nextSelectedDate
     }
 }
 
