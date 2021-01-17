@@ -299,8 +299,7 @@ class CalendarViewController: UIViewController {
         
         let nextDateTitleText = dateTitleFormatter.string(from: nextSelectedDate)
         let animationStyle: AnimatedLabel.AnimationStyle = nextSelectedDate > selectedDate ? .fromRight : .fromLeft
-        dateTitleLabel.animateText(to: nextDateTitleText)
-                                   //, animationStyle: animationStyle)
+        dateTitleLabel.animateText(to: nextDateTitleText, animationStyle: animationStyle)
         
         selectedDate = nextSelectedDate
     }
