@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */; };
+		63BA78B625B4308000ACCD95 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B525B4308000ACCD95 /* Day.swift */; };
 		63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */; };
 		63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */; };
 		63FDCD4025A9A26F00EC63D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FDCD3F25A9A26F00EC63D9 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabel.swift; sourceTree = "<group>"; };
+		63BA78B525B4308000ACCD95 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		63FDCD3325A9A26E00EC63D9 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				63FDCD6B25AEA99000EC63D9 /* EditEvent+Item.swift */,
 				63FDCD6F25AEA9CD00EC63D9 /* EditEvent+ItemType.swift */,
+				63BA78B525B4308000ACCD95 /* Day.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */,
 				63FDCD6325AE99A100EC63D9 /* EditEventViewController.swift in Sources */,
 				63FDCD5825A9A5DD00EC63D9 /* UIView+Extension.swift in Sources */,
+				63BA78B625B4308000ACCD95 /* Day.swift in Sources */,
 				63FDCD6025AC52FF00EC63D9 /* UIImage+Extension.swift in Sources */,
 				63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */,
 				63FDCD7025AEA9CD00EC63D9 /* EditEvent+ItemType.swift in Sources */,
