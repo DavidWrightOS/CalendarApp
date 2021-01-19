@@ -11,6 +11,8 @@ class CalendarViewController: UIViewController {
     
     private let monthViewController = MonthViewController()
     
+    // MARK: - Navigation/Tool Bars
+    
     private let toolbar: UIToolbar = {
         let tb = UIToolbar()
         let barButtonItems: [UIBarButtonItem] = [
@@ -55,6 +57,8 @@ class CalendarViewController: UIViewController {
         
         return navBar
     }()
+    
+    // MARK: - Search UI
     
     private lazy var searchTintView: UIView = {
         let view = UIView()
@@ -101,6 +105,8 @@ class CalendarViewController: UIViewController {
                            multiplier: 1,
                            constant: 0)
     }()
+    
+    // MARK: - Header UI
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -204,6 +210,8 @@ class CalendarViewController: UIViewController {
     
     private var selectedDate: Date = Date()
     
+    // MARK: - Date Formatters
+    
     private let monthFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM"
@@ -222,10 +230,14 @@ class CalendarViewController: UIViewController {
         return formatter
     }()
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
     }
+    
+    // MARK: - Configure Views
     
     private func configureViews() {
         view.backgroundColor = .systemBackground
