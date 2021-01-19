@@ -11,6 +11,7 @@
 		63BA78B325B42B4400ACCD95 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B225B42B4400ACCD95 /* DayCell.swift */; };
 		63BA78B625B4308000ACCD95 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B525B4308000ACCD95 /* Day.swift */; };
 		63BA78B925B6793B00ACCD95 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B825B6793B00ACCD95 /* MonthViewController.swift */; };
+		63BA78CA25B6EE0500ACCD95 /* MonthCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78C925B6EE0500ACCD95 /* MonthCollectionViewHeader.swift */; };
 		63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */; };
 		63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */; };
 		63FDCD4025A9A26F00EC63D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FDCD3F25A9A26F00EC63D9 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		63BA78B225B42B4400ACCD95 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		63BA78B525B4308000ACCD95 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		63BA78B825B6793B00ACCD95 /* MonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewController.swift; sourceTree = "<group>"; };
+		63BA78C925B6EE0500ACCD95 /* MonthCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionViewHeader.swift; sourceTree = "<group>"; };
 		63FDCD3325A9A26E00EC63D9 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63FDCD3825A9A26E00EC63D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */,
 				63BA78B225B42B4400ACCD95 /* DayCell.swift */,
+				63BA78C925B6EE0500ACCD95 /* MonthCollectionViewHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BA78CA25B6EE0500ACCD95 /* MonthCollectionViewHeader.swift in Sources */,
 				63FDCD6C25AEA99000EC63D9 /* EditEvent+Item.swift in Sources */,
 				63FDCD6925AE9E5A00EC63D9 /* CLPlacemark+Extension.swift in Sources */,
 				63FDCD5225A9A39100EC63D9 /* CalendarViewController.swift in Sources */,
