@@ -9,6 +9,8 @@ import UIKit
 
 class CalendarViewController: UIViewController {
     
+    private let monthViewController = MonthViewController()
+    
     private let toolbar: UIToolbar = {
         let tb = UIToolbar()
         let barButtonItems: [UIBarButtonItem] = [
@@ -246,6 +248,8 @@ class CalendarViewController: UIViewController {
         searchNavigationBar.anchor(left: view.leftAnchor, right: view.rightAnchor)
         searchNavigationBarTopAnchor.isActive = false
         searchNavigationBarBottomAnchor.isActive = true
+        
+        setupChildViewControllers()
     }
     
     // MARK: - Selectors
@@ -302,6 +306,29 @@ class CalendarViewController: UIViewController {
         dateTitleLabel.animateText(to: nextDateTitleText, animationStyle: animationStyle)
         
         selectedDate = nextSelectedDate
+    }
+}
+
+
+// MARK: - Setup Child View Controllers
+
+extension CalendarViewController {
+    
+    private func setupChildViewControllers() {
+        add(monthViewController)
+    }
+    
+    private func add(_ child: UIViewController) {
+        addChild(child)
+        view.addSubview(child.view)
+        child.view.anchor(top: headerView.bottomAnchor, left: view.leftAnchor, bottom: toolbar.topAnchor, right: view.rightAnchor)
+        child.didMove(toParent: self)
+    }
+    
+    private func remove() {
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
     }
 }
 
