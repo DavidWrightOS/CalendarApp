@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */; };
+		63BA78B325B42B4400ACCD95 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B225B42B4400ACCD95 /* DayCell.swift */; };
 		63BA78B625B4308000ACCD95 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B525B4308000ACCD95 /* Day.swift */; };
 		63BA78B925B6793B00ACCD95 /* MonthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BA78B825B6793B00ACCD95 /* MonthViewController.swift */; };
 		63FDCD3725A9A26E00EC63D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FDCD3625A9A26E00EC63D9 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabel.swift; sourceTree = "<group>"; };
+		63BA78B225B42B4400ACCD95 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		63BA78B525B4308000ACCD95 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		63BA78B825B6793B00ACCD95 /* MonthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthViewController.swift; sourceTree = "<group>"; };
 		63FDCD3325A9A26E00EC63D9 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				63BA78AC25B214AB00ACCD95 /* AnimatedLabel.swift */,
+				63BA78B225B42B4400ACCD95 /* DayCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				63BA78AD25B214AB00ACCD95 /* AnimatedLabel.swift in Sources */,
 				63FDCD7025AEA9CD00EC63D9 /* EditEvent+ItemType.swift in Sources */,
 				63FDCD3925A9A26E00EC63D9 /* SceneDelegate.swift in Sources */,
+				63BA78B325B42B4400ACCD95 /* DayCell.swift in Sources */,
 				63FDCD5C25AAE4FA00EC63D9 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
