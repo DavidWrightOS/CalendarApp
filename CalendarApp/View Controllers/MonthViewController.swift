@@ -27,6 +27,8 @@ class MonthViewController: UIViewController {
     
     private var indexPathForCurrentDay: IndexPath?
     
+    private var isInitialScrollComplete: Bool = false
+    
     // MARK: Calendar Data Values
     
     private let selectedDate: Date
@@ -86,6 +88,29 @@ class MonthViewController: UIViewController {
         collectionView.delegate = self
         
         daysByMonth = generateDaysInMonths(for: baseDate)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if !isInitialScrollComplete {
+            isInitialScrollComplete = true
+            
+            // Need to call `collectionViewContentSize` in order to force the collectionView
+            // to render its layout before scrolling to a particular section location
+            let _ = collectionView.collectionViewLayout.collectionViewContentSize
+            
+            scrollToCurrentMonth(animated: false)
+        }
+    }
+    
+    // MARK: - Methods
+    
+    func scrollToCurrentMonth(animated: Bool) {
+        guard let indexPathForCurrentDay = indexPathForCurrentDay else { return }
+        
+        let indexPath = IndexPath(item: 0, section: indexPathForCurrentDay.section)
+        scrollToSection(indexPath.section, animated: animated)
     }
 }
 
@@ -171,6 +196,15 @@ extension MonthViewController {
     
     private func selectedDateChanged(_ date: Date) {
         // TODO: Implement selectedDateChanged(_:)
+    }
+    
+    private func scrollToSection(_ section: Int, animated: Bool)  {
+        let indexPath = IndexPath(item: 0, section: section)
+        
+        if let attributes =  collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionView.elementKindSectionHeader, at: indexPath) {
+            let topOfHeader = CGPoint(x: 0, y: attributes.frame.origin.y - collectionView.contentInset.top)
+            collectionView.setContentOffset(topOfHeader, animated: animated)
+        }
     }
 }
 
