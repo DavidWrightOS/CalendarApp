@@ -168,6 +168,10 @@ extension MonthViewController {
         
         return days
     }
+    
+    private func selectedDateChanged(_ date: Date) {
+        // TODO: Implement selectedDateChanged(_:)
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -195,6 +199,10 @@ extension MonthViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension MonthViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let day = daysByMonth[indexPath.section][indexPath.row]
+        selectedDateChanged(day.date)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath ) -> CGSize {
         let width = collectionView.frame.width / 7
