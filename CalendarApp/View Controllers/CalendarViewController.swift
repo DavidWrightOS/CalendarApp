@@ -267,7 +267,7 @@ class CalendarViewController: UIViewController {
     // MARK: - Selectors
     
     @objc private func todayButtonTapped() {
-        print("DEBUG: debug todayButtonTapped..")
+        monthViewController.scrollToCurrentMonth(animated: true)
     }
     
     @objc private func calendarsButtonTapped() {
