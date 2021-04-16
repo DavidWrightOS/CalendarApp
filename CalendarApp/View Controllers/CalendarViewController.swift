@@ -332,7 +332,7 @@ extension CalendarViewController {
     
     private func add(_ child: UIViewController) {
         addChild(child)
-        view.addSubview(child.view)
+        view.insertSubview(child.view, at: 0)
         child.view.anchor(top: headerView.bottomAnchor, left: view.leftAnchor, bottom: toolbar.topAnchor, right: view.rightAnchor)
         child.didMove(toParent: self)
     }
